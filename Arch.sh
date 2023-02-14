@@ -89,8 +89,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt /bin/bash <<EOF
 
 # Set the time zone
-ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
-hwclock --systohc
+timedatectl set-timezone Asia/Kolkata
 
 # Generate locale
 echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
