@@ -118,6 +118,12 @@ echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 # Install nano text editor
 pacman -S nano
 
+read -p "Install the proprietary Nvidia driver? (y/n) " INSTALL_NVIDIA_DRIVER
+if [[ $INSTALL_NVIDIA_DRIVER == "y" ]]; then
+  pacman -S nvidia nvidia-utils
+fi
+
+
 if [ "$BOOT_TYPE" = "UEFI" ]; then
 	(
 	# Install and configure GRUB for UEFI
