@@ -13,11 +13,6 @@ fi
 # Update system clock
 timedatectl set-ntp true
 
-# Prompt for username and password
-read -p "Enter username: " USERNAME
-read -sp "Enter password: " PASSWORD
-echo
-
 # Partition the disk (replace /dev/sda with the appropriate device)
 (
   echo g      # create a new empty GPT partition table
@@ -40,6 +35,10 @@ mkfs.ext4 /dev/sda2
 
 # Mount the root partition
 mount /dev/sda2 /mnt
+
+# Mount the EFI partition
+mkdir -p /mnt/boot/efi
+mount /dev/sda1 /mnt/boot/efi
 
 # Install base packages and kernel
 pacstrap /mnt base base-devel linux linux-firmware
@@ -88,9 +87,15 @@ echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 # Install nano text editor
 pacman -S nano
 
+# Install and configure GRUB for UEFI
+pacman -S grub efibootmgr
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Arch
+grub-mkconfig -o /boot/grub/grub.cfg
+
 EOF
 
 # Unmount all partitions
 umount -R /mnt
 
 echo "Installation completed successfully. You may now reboot the system."
+reboot
