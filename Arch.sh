@@ -41,6 +41,8 @@ if [ "$BOOT_TYPE" = "UEFI" ]; then
       echo w      # write changes
     ) | fdisk /dev/sda
 	
+	sleep 10s
+	
 	# Format the partitions
 	mkfs.fat -F32 /dev/sda1
 	mkfs.ext4 /dev/sda2
@@ -51,6 +53,8 @@ if [ "$BOOT_TYPE" = "UEFI" ]; then
 	# Mount the EFI partition
 	mkdir -p /mnt/boot/efi
 	mount /dev/sda1 /mnt/boot/efi
+	
+	sleep 10s
 	
 else
     (
@@ -63,11 +67,15 @@ else
       echo w      # write changes
     ) | fdisk /dev/sda
 	
+	sleep 10s
+	
 	# Format the partitions
 	mkfs.ext4 /dev/sda1
 	
 	# Mount the root partition
 	mount /dev/sda1 /mnt
+	
+	sleep 10s
 fi
 
 
