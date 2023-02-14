@@ -86,7 +86,7 @@ pacstrap /mnt base base-devel linux linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
 
 # Chroot into the new system
-arch-chroot /mnt /bin/bash <<EOF
+arch-chroot /mnt /bin/bash 
 
 # Set the time zone
 ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
@@ -154,9 +154,6 @@ else
 	)
 fi
 
-
-
-EOF
 
 # Unmount all partitions
 umount -R /mnt
