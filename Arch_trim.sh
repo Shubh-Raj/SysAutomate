@@ -65,6 +65,7 @@ systemctl enable bluetooth
 
 # Install sudo and create user with sudo access
 pacman -S sudo
+echo Enter user name:
 read USERNAME
 read -sp PASSWORD
 useradd -m -G wheel -s /bin/bash $USERNAME
@@ -107,10 +108,11 @@ git clone https://aur.archlinux.org/hyprland.git
 cd hyprland
 makepkg PKGBUILD
 
-exit
+exit /bin/bash <<EOF
 
 # Unmount all partitions
 umount -R /mnt
 
 echo "Installation completed successfully. You may now reboot the system."
 reboot
+EOF
