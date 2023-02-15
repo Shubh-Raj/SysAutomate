@@ -82,19 +82,29 @@ fi
 # Install base packages and kernel
 pacstrap /mnt base base-devel linux linux-firmware
 
+sleep 10s
+
 # Generate fstab file
 genfstab -U /mnt >> /mnt/etc/fstab
+
+sleep 10s
 
 # Chroot into the new system
 arch-chroot /mnt /bin/bash <<EOF
 
+sleep 10s
+
 # Set the time zone
 timedatectl set-timezone Asia/Kolkata
+
+sleep 10s
 
 # Generate locale
 echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 locale-gen
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
+
+sleep 10s
 
 # Set the hostname
 echo "myhostname" > /etc/hostname
@@ -104,9 +114,13 @@ echo "127.0.0.1 localhost" >> /etc/hosts
 echo "::1       localhost" >> /etc/hosts
 echo "127.0.1.1 myhostname.localdomain myhostname" >> /etc/hosts
 
+sleep 10s
+
 # Install network manager
 pacman -S networkmanager
 systemctl enable NetworkManager
+
+sleep 10s
 
 # Install Wayland and desktop environment
 pacman -S wayland wayland-protocols
