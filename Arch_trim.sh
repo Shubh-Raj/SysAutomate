@@ -18,9 +18,6 @@ fi
 
 echo "Detected boot mode: $BOOT_TYPE"
 
-# Update system clock
-timedatectl set-ntp true
-
 # Prompt for root password
 read -sp "Enter root password: " ROOT_PASSWORD
 echo
@@ -30,14 +27,12 @@ echo
 ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
 hwclock --systohc
 
-sleep 10s
 
 # Generate locale
 echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 locale-gen
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
 
-sleep 10s
 
 # Set the hostname
 echo "myhostname" > /etc/hostname
@@ -47,13 +42,11 @@ echo "127.0.0.1 localhost" >> /etc/hosts
 echo "::1       localhost" >> /etc/hosts
 echo "127.0.1.1 myhostname.localdomain myhostname" >> /etc/hosts
 
-sleep 10s
 
 # Install network manager
 pacman -S networkmanager
 systemctl enable NetworkManager
 
-sleep 10s
 
 # Install Wayland and desktop environment
 pacman -S wayland wayland-protocols
