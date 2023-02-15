@@ -95,7 +95,8 @@ arch-chroot /mnt /bin/bash <<EOF
 sleep 10s
 
 # Set the time zone
-timedatectl set-timezone Asia/Kolkata
+ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
+hwclock --systohc
 
 sleep 10s
 
