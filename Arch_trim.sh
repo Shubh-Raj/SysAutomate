@@ -96,11 +96,7 @@ else
 	)
 fi
 
-su - $USERNAME /bin/bash <<EOF
-git clone https://aur.archlinux.org/hyprland.git
-cd hyprland
-makepkg PKGBUILD
-EOF
+su -c 'git clone https://aur.archlinux.org/hyprland.git ; cd hyprland ; makepkg PKGBUILD' $USERNAME 
 
 
 exit /bin/bash <<EOF
