@@ -65,6 +65,8 @@ systemctl enable bluetooth
 
 # Install sudo and create user with sudo access
 pacman -S sudo
+read USERNAME
+read -sp PASSWORD
 useradd -m -G wheel -s /bin/bash $USERNAME
 echo "$USERNAME:$PASSWORD" | chpasswd
 echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
