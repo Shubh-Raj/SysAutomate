@@ -57,7 +57,9 @@ sleep 10s
 
 # Install Wayland and desktop environment
 pacman -S wayland wayland-protocols
-pacman -S hyprland
+git clone https://aur.archlinux.org/hyprland.git
+cd hyprland
+makepkg PKGBUILD
 
 # Install bluetooth support
 pacman -S bluez bluez-utils
