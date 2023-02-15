@@ -96,7 +96,7 @@ else
 	)
 fi
 
-su - $USERNAME /bin/bsh <<EOF
+su - $USERNAME /bin/bash <<EOF
 git clone https://aur.archlinux.org/hyprland.git
 cd hyprland
 makepkg PKGBUILD
