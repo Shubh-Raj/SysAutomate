@@ -100,7 +100,7 @@ else
 	)
 fi
 
-
+exit
 
 # Unmount all partitions
 umount -R /mnt
